@@ -18,9 +18,9 @@ namespace ElectronicDiary.DataFiles
         public Teachers()
         {
             this.Classes = new HashSet<Classes>();
+            this.Disciplines = new HashSet<Disciplines>();
             this.Scores = new HashSet<Scores>();
             this.Users = new HashSet<Users>();
-            this.Disciplines = new HashSet<Disciplines>();
             this.Disciplines1 = new HashSet<Disciplines>();
         }
     
@@ -32,11 +32,11 @@ namespace ElectronicDiary.DataFiles
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Classes> Classes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Disciplines> Disciplines { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Scores> Scores { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Users> Users { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Disciplines> Disciplines { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Disciplines> Disciplines1 { get; set; }
     }

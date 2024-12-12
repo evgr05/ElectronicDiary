@@ -251,6 +251,10 @@
             <End Role="Classes" EntitySet="Classes" />
             <End Role="Students" EntitySet="Students" />
           </AssociationSet>
+          <AssociationSet Name="FK_Disciplines_Teachers" Association="ElectronicDiaryModel.FK_Disciplines_Teachers">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="Disciplines" EntitySet="Disciplines" />
+          </AssociationSet>
           <AssociationSet Name="FK_Scores_Disciplines" Association="ElectronicDiaryModel.FK_Scores_Disciplines">
             <End Role="Disciplines" EntitySet="Disciplines" />
             <End Role="Scores" EntitySet="Scores" />
@@ -271,10 +275,6 @@
             <End Role="Disciplines" EntitySet="Disciplines" />
             <End Role="Teachers" EntitySet="Teachers" />
           </AssociationSet>
-          <AssociationSet Name="FK_Disciplines_Teachers" Association="ElectronicDiaryModel.FK_Disciplines_Teachers">
-            <End Role="Teachers" EntitySet="Teachers" />
-            <End Role="Disciplines" EntitySet="Disciplines" />
-          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Classes">
           <Key>
@@ -292,10 +292,10 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Scores" Relationship="ElectronicDiaryModel.FK_Scores_Disciplines" FromRole="Disciplines" ToRole="Scores" />
-          <NavigationProperty Name="Teachers1" Relationship="ElectronicDiaryModel.TeachersDisciplines" FromRole="Disciplines" ToRole="Teachers" />
           <Property Name="TeacherId" Type="Int32" />
           <NavigationProperty Name="Teachers" Relationship="ElectronicDiaryModel.FK_Disciplines_Teachers" FromRole="Disciplines" ToRole="Teachers" />
+          <NavigationProperty Name="Scores" Relationship="ElectronicDiaryModel.FK_Scores_Disciplines" FromRole="Disciplines" ToRole="Scores" />
+          <NavigationProperty Name="Teachers1" Relationship="ElectronicDiaryModel.TeachersDisciplines" FromRole="Disciplines" ToRole="Teachers" />
         </EntityType>
         <EntityType Name="Scores">
           <Key>
@@ -341,10 +341,10 @@
           <Property Name="Adress" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="Classes" Relationship="ElectronicDiaryModel.FK_Classes_Teachers" FromRole="Teachers" ToRole="Classes" />
+          <NavigationProperty Name="Disciplines" Relationship="ElectronicDiaryModel.FK_Disciplines_Teachers" FromRole="Teachers" ToRole="Disciplines" />
           <NavigationProperty Name="Scores" Relationship="ElectronicDiaryModel.FK_Scores_Teachers" FromRole="Teachers" ToRole="Scores" />
           <NavigationProperty Name="Users" Relationship="ElectronicDiaryModel.FK_Users_Teachers" FromRole="Teachers" ToRole="Users" />
-          <NavigationProperty Name="Disciplines" Relationship="ElectronicDiaryModel.TeachersDisciplines" FromRole="Teachers" ToRole="Disciplines" />
-          <NavigationProperty Name="Disciplines1" Relationship="ElectronicDiaryModel.FK_Disciplines_Teachers" FromRole="Teachers" ToRole="Disciplines" />
+          <NavigationProperty Name="Disciplines1" Relationship="ElectronicDiaryModel.TeachersDisciplines" FromRole="Teachers" ToRole="Disciplines" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -377,6 +377,18 @@
             </Principal>
             <Dependent Role="Students">
               <PropertyRef Name="ClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Disciplines_Teachers">
+          <End Type="ElectronicDiaryModel.Teachers" Role="Teachers" Multiplicity="0..1" />
+          <End Type="ElectronicDiaryModel.Disciplines" Role="Disciplines" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teachers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Disciplines">
+              <PropertyRef Name="TeacherId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -431,18 +443,6 @@
         <Association Name="TeachersDisciplines">
           <End Type="ElectronicDiaryModel.Disciplines" Role="Disciplines" Multiplicity="*" />
           <End Type="ElectronicDiaryModel.Teachers" Role="Teachers" Multiplicity="*" />
-        </Association>
-        <Association Name="FK_Disciplines_Teachers">
-          <End Type="ElectronicDiaryModel.Teachers" Role="Teachers" Multiplicity="0..1" />
-          <End Type="ElectronicDiaryModel.Disciplines" Role="Disciplines" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Teachers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Disciplines">
-              <PropertyRef Name="TeacherId" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         </Schema>
     </edmx:ConceptualModels>

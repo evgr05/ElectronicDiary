@@ -25,10 +25,10 @@ namespace ElectronicDiary.DataFiles
         public string Title { get; set; }
         public Nullable<int> TeacherId { get; set; }
     
+        public virtual Teachers Teachers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Scores> Scores { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Teachers> Teachers1 { get; set; }
-        public virtual Teachers Teachers { get; set; }
     }
 }

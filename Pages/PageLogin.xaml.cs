@@ -35,6 +35,10 @@ namespace ElectronicDiary.Pages
                 {
                     FrameClass.frmObj.Navigate(new PageMain(userObj));
                 }
+                else
+                {
+                    MessageBox.Show("Неправильное имя пользователя или пароль.");
+                }
             }
             catch(Exception ex)
             {
