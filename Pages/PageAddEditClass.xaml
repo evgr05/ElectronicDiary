@@ -1,0 +1,26 @@
+﻿<Page x:Class="ElectronicDiary.Pages.PageAddEditClass"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ElectronicDiary.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PageAddEditClass">
+
+    <Grid>
+        <StackPanel HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+            <TextBlock Text="Классный руководитель:"/>
+            <ComboBox Name="cmbTeac"
+                SelectedItem="{Binding Teachers}"
+                DisplayMemberPath="FullName"/>
+            <TextBlock Text="Класс:"/>
+            <TextBox x:Name="txbNumber"
+                     Text="{Binding ClassNumber}"/>
+
+            <Button x:Name="saveBtn" Content="Сохранить" Margin="0 0 0 10" Click="saveBtn_Click"/>
+            <Button x:Name="bckBtn" Content="Отмена" Click="bckBtn_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>
